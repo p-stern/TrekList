@@ -1,0 +1,293 @@
+/* ====================== General */
+
+body {
+  background-color: #e6ecf0;
+}
+
+
+/* ======================= Nav */
+
+.navbar {
+  background-color: #fff;
+  height: 46px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  margin-bottom: 0;
+  position: relative;
+  z-index: 9999;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand>img {
+  display: inline-block;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  width: 100px;
+  border-radius: 2px;
+}
+
+nav+.container {
+  margin-bottom: 1rem;
+}
+
+/* ============================ Signed out home */
+
+.container-main {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  left: 0;
+  z-index: -1;
+  background-image: url("/static/images/stars.jpg");
+  background-size: contain;
+  background-position: center center;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  overflow: auto;
+}
+
+
+.container-main h1 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+
+
+/* =========================== Legend */
+
+
+.container-left {
+  width: 15%;
+  text-align: left;
+  position: fixed;
+  top: 270px;
+  left: 60px;
+}
+
+.td-legend {
+  color: white;
+  background-color: rgb(48, 48, 248);
+  padding-left: .5em;
+}
+
+.Movie {
+  width: 32px;
+  background: #66b032;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  /* remove extra space below image */
+}
+
+.content-detail {
+  width: 60%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  border-spacing: 50px;
+  background-color: rgb(46, 45, 45);
+}
+
+.Movie {
+  background: #66B032;
+}
+
+.Movie-logo {
+  content: url("/static/images/Movie.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #66B032;
+}
+
+.TOS {
+  background: #FF9999;
+}
+
+.TOS-logo {
+  content: url("/static/images/TOS.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #FF9999;
+}
+
+.TAS {
+  background: #FFCC99;
+}
+
+.TAS-logo {
+  content: url("/static/images/TAS.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #FFCC99;
+}
+
+.TNG {
+  background: #FFFF99;
+}
+
+.TNG-logo {
+  content: url("/static/images/TNG.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #FFFF99;
+}
+
+.DS9 {
+  background: #BFFFFF;
+}
+
+.DS9-logo {
+  content: url("/static/images/DS9.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #BFFFFF;
+}
+
+.VOY {
+  background: #99CCFF;
+}
+
+.VOY-logo {
+  content: url("/static/images/VOY.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #99CCFF;
+}
+
+.ENT {
+  background: #CCCCFF;
+}
+
+.ENT-logo {
+  content: url("/static/images/ENT.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #CCCCFF;
+}
+
+.DIS {
+  background: #fa5e5e;
+}
+
+.DIS-logo {
+  content: url("/static/images/DIS.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #fa5e5e;
+}
+
+.ST {
+  background: #f68e5f;
+}
+
+.ST-logo {
+  content: url("/static/images/ST.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #f5dd90;
+}
+
+.PIC {
+  background: #f5dd90;
+}
+
+.PIC-logo {
+  content: url("/static/images/PIC.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #f5dd90;
+}
+
+.LD {
+  background: #c6d8ff;
+}
+
+.LD-logo {
+  content: url("/static/images/LD.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #c6d8ff;
+}
+
+.PRO {
+  background: #71a9f7;
+}
+
+.PRO-logo {
+  content: url("/static/images/PRO.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #71a9f7;
+}
+
+.SNW {
+  background: #C8BBFF;
+}
+
+.SNW-logo {
+  content: url("/static/images/SNW.jpg");
+  width: 90px;
+  height: 35.09px;
+  background: #9A86EA;
+}
+
+/* =========================== Table */
+
+table {
+  width: 90%;
+}
+
+th {
+  color: silver;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+  border-collapse: separate;
+  margin: auto;
+}
+
+.column-detail {
+  width: 100%;
+  background-color: rgb(46, 45, 45);
+  text-align: justify;
+  color: black;
+  display: inline-block;
+}
+
+.series {
+  padding-left: .5rem;
+  width: 90px;
+}
+
+.episode_id {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  width: 77px;
+  text-align: center;
+}
+
+.title {
+  padding-left: .5rem;
+}
+
+.airdate {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  width: 100px;
+  text-align: center;
+}

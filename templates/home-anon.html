@@ -1,0 +1,64 @@
+{% extends 'base.html' %}ntent-l
+{% block content %}
+<div class="container-left">
+  <table class="legend">
+    <tbody>
+      {% for m in media %}
+      <tr>
+        <td class="{{m.abbr}}"></td>
+        <td class="td-legend">
+          {{m.name}} <br>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="container-main">
+  <br><br>
+  <h1>Star Trek List</h1>
+  <!-- <p>Sign up for more features!</p>
+  <a href="/signup" class="btn btn-primary">Sign up</a> -->
+  <br>
+  <div class="content-detail">
+    <div class="header"></div>
+    <div class="column-detail">
+      <table>
+        <tbody>
+          <tr>
+            <th class="series">Series </th>
+            <th class="episode_id">Episode</th>
+            <th class="title">Title</th>
+            <th class="airdate">Air date</th>
+          </tr>
+          {% for t in titles %}
+          <tr class="{{t.abbr}}">
+            <td class="{{t.abbr}}-logo"></td>
+
+            {% if t.abbr == "Movie" %}
+            <td class="episode_id">Movie</td>
+            {% if today >= t.premiered_date %}
+            <td class="title"><a href="https://memory-alpha.fandom.com/wiki/{{t.title}}">{{t.title}}</a></td>
+            {% else %}
+            <td class="title">{{t.title}}</td>
+            {% endif %}
+            {% else %}
+            <td class="episode_id">{{t.season_id}}-{{t.episode_id}}</td>
+            {% if today >= t.premiered_date %}
+            <td class="title"><a
+                href="https://memory-alpha.fandom.com/wiki/{{ t.title|replace('?', '%3F') }}_(episode)">{{t.title}}</a>
+            </td>
+            {% else %}
+            <td class="title">{{t.title}}</td>
+            {% endif %}
+            {% endif %}
+
+            <td class="airdate">{{t.premiered_date}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
