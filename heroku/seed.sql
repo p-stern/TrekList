@@ -1,11 +1,11 @@
 -- from the terminal run:
 -- psql < seed.sql
 
-DROP DATABASE IF EXISTS postgresql-triangular-07777;
+DROP DATABASE IF EXISTS "postgresql-triangular-07777";
 
-CREATE DATABASE postgresql-triangular-07777;
+CREATE DATABASE "postgresql-triangular-07777";
 
-\c postgresql-triangular-07777
+\c "postgresql-triangular-07777"
 
 CREATE TABLE media (
     id SERIAL   NOT NULL,
