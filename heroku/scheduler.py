@@ -1,4 +1,3 @@
-import schedule
 import time
 import requests
 import os
@@ -263,8 +262,4 @@ def corrections(abbr, season, name, episode, airdate):
     return season, name, episode, airdate
 
 
-schedule.every(10).seconds.do(populate_db)
-
-while 1:
-    schedule.run_pending()
-    time.sleep(1)
+populate_db()
