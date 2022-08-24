@@ -17,7 +17,9 @@ bbb = app.config['SQLALCHEMY_DATABASE_URI'] = (
     os.environ.get(('DATABASE_URL'.replace("postgres://", "postgresql://", 1)), 'postgresql:///startrek'))
 print("3")
 print(bbb)
+ccc = bbb.replace("postgres://", "postgresql://", 1)
 print("4")
+print(ccc)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     os.environ.get(('DATABASE_URL'.replace("postgres://", "postgresql://", 1)), 'postgresql:///startrek'))
