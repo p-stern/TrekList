@@ -8,6 +8,17 @@ app = Flask(__name__)
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
+print("1")
+aaa = app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ.get('DATABASE_URL', 'postgresql:///startrek'))
+print(aaa)
+print("2")
+bbb = app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ.get(('DATABASE_URL'.replace("postgres://", "postgresql://", 1)), 'postgresql:///startrek'))
+print("3")
+print(bbb)
+print("4")
+
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     os.environ.get(('DATABASE_URL'.replace("postgres://", "postgresql://", 1)), 'postgresql:///startrek'))
 
