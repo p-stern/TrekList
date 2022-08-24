@@ -19,9 +19,13 @@ app = Flask(__name__)
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get(('DATABASE_URL'.replace("postgres://", "postgresql://", 1)), 'postgresql:///startrek'))
 
+# Due to heroku change in the sqlalchemy library
+db_url = os.environ.get('DATABASE_URL').replace(
+    "postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ.get(db_url, 'postgresql:///startrek'))
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
