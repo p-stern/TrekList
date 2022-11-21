@@ -1,4 +1,4 @@
-import psycopg2
+import schedule
 import time
 import requests
 import os
@@ -9,7 +9,6 @@ app = Flask(__name__)
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
-
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     os.environ.get('DATABASE_URL', 'postgresql:///startrek'))
 
@@ -32,7 +31,7 @@ def populate_db():
     media = Media.query.order_by(Media.ord).all()
     for m in media:                  # Retrieve episodes for each TV Series and insert into 'title' table
         if m.media_type == 'TV':     # Do not include Movies
-            url = "https://api.tvmaze.com/shows/" + str(m.id) + "/episodes"
+            url = "http://api.tvmaze.com/shows/" + str(m.id) + "/episodes"
             res = requests.get(url)
             data = res.json()
             for d in data:
@@ -46,7 +45,7 @@ def populate_db():
 
     db.session.commit()
     print("Loaded")
-    # return schedule.CancelJob
+    return schedule.CancelJob
 
 
 def add_title(abbr, airdate, id, season, episode, name, summary):
@@ -58,7 +57,7 @@ def add_title(abbr, airdate, id, season, episode, name, summary):
 def addSpecialEpisode(m):
     """Get Pilot episode (which has episode None)"""
 
-    url = "https://api.tvmaze.com/seasons/1921/episodes"
+    url = "http://api.tvmaze.com/seasons/1921/episodes"
 
     res = requests.get(url)
     data = res.json()
@@ -207,6 +206,24 @@ def corrections(abbr, season, name, episode, airdate):
     if name == "Storm Front (2)":
         name = "Storm Front, Part II"
 
+    if name == "Borderland (1)":
+        name = "Borderland"
+
+    if name == "Cold Station 12 (2)":
+        name = "Cold Station 12"
+
+    if name == "The Augments(3)":
+        name = "The Augments"
+
+    if name == "The Forge(1)":
+        name = "The Forge"
+
+    if name == "Awakening(2)":
+        name = "Awakening"
+
+    if name == "Kir'Shara(3)":
+        name = "Kir'Shara"
+
     if name == "Babel One (1)":
         name = "Babel One"
 
@@ -264,4 +281,8 @@ def corrections(abbr, season, name, episode, airdate):
     return season, name, episode, airdate
 
 
-populate_db()
+schedule.every(10).seconds.do(populate_db)
+
+while 1:
+    schedule.run_pending()
+    time.sleep(1)
