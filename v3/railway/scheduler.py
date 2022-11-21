@@ -212,16 +212,16 @@ def corrections(abbr, season, name, episode, airdate):
     if name == "Cold Station 12 (2)":
         name = "Cold Station 12"
 
-    if name == "The Augments(3)":
+    if name == "The Augments (3)":
         name = "The Augments"
 
-    if name == "The Forge(1)":
+    if name == "The Forge (1)":
         name = "The Forge"
 
-    if name == "Awakening(2)":
+    if name == "Awakening (2)":
         name = "Awakening"
 
-    if name == "Kir'Shara(3)":
+    if name == "Kir'Shara (3)":
         name = "Kir'Shara"
 
     if name == "Babel One (1)":
