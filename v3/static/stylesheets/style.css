@@ -1,0 +1,792 @@
+/* ====================== General */
+
+body {
+  background-color: #e6ecf0;
+}
+
+body.error-404 {
+  background-color: #1da1f2;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+.btn {
+  border-radius: 50px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+/* ======================= Nav */
+
+.navbar {
+  background-color: #fff;
+  height: 46px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  margin-bottom: 0;
+  position: relative;
+  z-index: 9999;
+}
+
+.navbar a {
+  color: #66757f;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #1c94e0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand>img {
+  display: inline-block;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  width: 100px;
+  border-radius: 2px;
+}
+
+.nav>li>a>img {
+  width: 32px;
+  border-radius: 32px;
+}
+
+ul.nav.navbar-nav {
+  align-items: center;
+}
+
+ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+  display: flex;
+}
+
+nav form.navbar-form {
+  display: flex;
+  position: relative;
+}
+
+
+/* on "onboarding" pages (signup & login), the navbar is
+   different: no search box, the logo is centered, and it has
+   a background color.
+ */
+
+.onboarding>.navbar {
+  background-image: url("/static/images/nav-bg.png");
+  background-size: 100% 100%;
+}
+
+.onboarding .navbar-brand span {
+  display: none;
+}
+
+.onboarding .nav.navbar-nav.navbar-right {
+  position: absolute;
+  right: 16px;
+}
+
+.onboarding>.navbar a {
+  color: #fff;
+}
+
+.onboarding>.navbar form.navbar-form {
+  display: none;
+}
+
+.onboarding {
+  background-color: #fff;
+}
+
+@media (max-width: 468px) {
+  nav form.navbar-form {
+    display: none;
+  }
+}
+
+nav+.container {
+  margin-bottom: 1rem;
+}
+
+/* ===================== User profile */
+
+.join-message {
+  margin-top: 100px;
+}
+
+#profile-image,
+#profile-avatar {
+  border-radius: 100%;
+  display: block;
+  margin-left: -15px;
+}
+
+#profile-image {
+  margin: 0 auto 15px;
+  width: 100%;
+}
+
+#profile-avatar {
+  width: 200px;
+  height: 200px;
+  border: 5px solid #fff;
+  margin-top: -120px;
+  z-index: 1;
+  position: relative;
+  box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
+}
+
+.timeline-image {
+  border-radius: 48px;
+  height: 48px;
+  width: 48px;
+  margin-top: 2px;
+}
+
+.message-area,
+.timeline-image {
+  display: inline-block;
+}
+
+.message-area {
+  margin-left: 10px;
+}
+
+
+.full-width {
+  width: 100vw;
+  margin: 0 -50vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+}
+
+.row.full-width {
+  background-color: #fff;
+  margin-top: -80px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+  height: 60px;
+  align-items: center;
+}
+
+.user-stats>.ml-auto {
+  display: flex;
+  align-items: center;
+}
+
+.user-stats>.ml-auto .btn {
+  min-width: 105px;
+  padding: 6px 16px;
+}
+
+.stat {
+  text-align: center;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 14px 15px 7px;
+  line-height: 1;
+}
+
+.stat>.small {
+  color: #657786;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  margin-bottom: 0;
+}
+
+.stat>.small+h4 {
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 3px;
+}
+
+#messages {
+  position: relative;
+}
+
+#messages .message-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#messages .list-group-item a:not(.message-link) {
+  position: relative;
+  z-index: 2;
+}
+
+#messages .list-group-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 7px 20px 12px;
+}
+
+#messages:not(.no-hover) .list-group-item:hover {
+  background-color: #e6ecf0;
+}
+
+#sidebar-username {
+  margin-top: 30px;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 28px;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .full-width .user-stats .stat {
+    display: none;
+  }
+}
+
+.user-location {
+  color: #657786;
+}
+
+/* ============================ Signed out home */
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  left: 0;
+  z-index: -1;
+  background-image: url("/static/images/stars.jpg");
+  background-size: contain;
+  background-position: center center;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.container-messages {
+  color: #fff;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  left: 0;
+  z-index: -1;
+  background-image: url("/static/images/stars.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.container-main h1,
+.container-content h1 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.li {
+  font-size: 14px;
+  margin-left: 10px;
+  list-style-type: circle;
+}
+
+.posts {
+  display: block;
+  background-color: white;
+  color: black;
+  text-align: left;
+}
+
+/* ============================== Signed in Home */
+
+#home-aside>.user-card {
+  margin-top: 0;
+  overflow: hidden;
+}
+
+#home-aside>.user-card .card-link {
+  display: flex;
+}
+
+#home-aside>.user-card .card-link>p {
+  margin-left: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+#home-aside>.user-card .stat {
+  padding: 14px 0 7px;
+}
+
+#home-aside>.user-card .user-stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+#home-aside>.user-card>div {
+  width: 100%;
+}
+
+#home-aside .card-link>p {
+  position: relative;
+}
+
+#home-aside .stat h4 {
+  text-align: left;
+}
+
+/* ========================== Signup/Login */
+
+#user_form input.form-control {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px;
+}
+
+/* =========================== Edit Page */
+
+.edit-btn-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-btn-area>.btn {
+  width: 48%;
+}
+
+/* =========================== Legend */
+
+.container-left {
+  width: 15%;
+  text-align: left;
+  position: fixed;
+  top: 37%;
+  left: 2.3%;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: white;
+}
+
+.container-left>table,
+.container-left>table>tbody>tr,
+.container-left>table>tbody>tr>td {
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: white;
+}
+
+
+.td-legend {
+  color: white;
+  background-color: rgb(48, 48, 248);
+  padding-left: .5em;
+}
+
+.td-legend>input[type="checkbox"] {
+  margin-right: .5em;
+}
+
+.Movie {
+  width: 32px;
+  background: #66b032;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  /* remove extra space below image */
+}
+
+.content-detail {
+  width: 60%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  border-spacing: 50px;
+  background-color: rgb(46, 45, 45);
+}
+
+
+.Movie {
+  background: #66B032;
+}
+
+.Movie-logo {
+  content: url("/static/images/Movie.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #66B032;
+}
+
+.TOS {
+  background: #FF9999;
+}
+
+.TOS-logo {
+  content: url("/static/images/TOS.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #FF9999;
+}
+
+.TAS {
+  background: #FFCC99;
+}
+
+.TAS-logo {
+  content: url("/static/images/TAS.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #FFCC99;
+}
+
+.TNG {
+  background: #FFFF99;
+}
+
+.TNG-logo {
+  content: url("/static/images/TNG.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #FFFF99;
+}
+
+.DS9 {
+  background: #BFFFFF;
+}
+
+.DS9-logo {
+  content: url("/static/images/DS9.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #BFFFFF;
+}
+
+.VOY {
+  background: #99CCFF;
+}
+
+.VOY-logo {
+  content: url("/static/images/VOY.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #99CCFF;
+}
+
+.ENT {
+  background: #CCCCFF;
+}
+
+.ENT-logo {
+  content: url("/static/images/ENT.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #CCCCFF;
+}
+
+.DIS {
+  background: #fa5e5e;
+}
+
+.DIS-logo {
+  content: url("/static/images/DIS.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #fa5e5e;
+}
+
+.ST {
+  background: #f68e5f;
+}
+
+.ST-logo {
+  content: url("/static/images/ST.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #f5dd90;
+}
+
+.PIC {
+  background: #f5dd90;
+}
+
+.PIC-logo {
+  content: url("/static/images/PIC.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #f5dd90;
+}
+
+.LD {
+  background: #c6d8ff;
+}
+
+.LD-logo {
+  content: url("/static/images/LD.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #c6d8ff;
+}
+
+.PRO {
+  background: #71a9f7;
+}
+
+.PRO-logo {
+  content: url("/static/images/PRO.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #71a9f7;
+}
+
+.SNW {
+  background: #C8BBFF;
+}
+
+.SNW-logo {
+  content: url("/static/images/SNW.jpg");
+  width: 6em;
+  height: 35.09px;
+  background: #9A86EA;
+}
+
+/* =========================== Table */
+
+table {
+  width: 100%;
+  font-size: 16px;
+  justify-self: center;
+}
+
+th {
+  color: silver;
+}
+
+.container-main>table,
+.container-main>table>tbody>tr,
+.container-main>table>tbody>tr>td {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-collapse: separate;
+}
+
+
+
+.column-detail {
+  width: 95%;
+  background-color: rgb(46, 45, 45);
+  text-align: justify;
+  color: black;
+  display: inline-block;
+}
+
+.th-title {
+  text-indent: 33px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+.series {
+  padding-left: .5rem;
+  width: 6em;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+.episode_id {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  width: 6em;
+  text-align: center;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+.title {
+  padding-left: .5rem;
+  width: 70em;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+.title>input[type="checkbox"][value="TOS1-1"] {
+  scroll-margin-top: 400px;
+}
+
+.title>input[type="checkbox"] {
+  scroll-margin-top: 200px;
+}
+
+.title>input,
+.title>a {
+  margin-right: .7rem;
+}
+
+.airdate {
+  padding-left: .5rem;
+  padding-right: .5rem;
+  width: 10em;
+  text-align: center;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+.fa-comment {
+  color: black;
+}
+
+.cmt-hdr {
+  color: white;
+}
+
+
+/* =========================== Total count */
+
+.container-right {
+  width: 15%;
+  text-align: center;
+  position: fixed;
+  top: 720px;
+  right: 60px;
+  color: white;
+}
+
+/* =========================== Message add page */
+
+
+.tablea {
+  color: #000;
+  padding: 2px;
+  margin: 0px;
+  text-align: left;
+  border-left: solid 1px #CFDBE5;
+  border-right: solid 1px #CFDBE5;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+td.header {
+  background: #E9F0F6;
+  color: navy;
+  height: 27px;
+  border-bottom: solid 1px #9BAEBF;
+  border-top: solid 1px black;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 15px;
+}
+
+.detaila {
+  background: #ECEDF3;
+  color: rgb(94, 43, 94);
+  padding: 2px;
+  margin: 0px;
+  text-align: left;
+  border-left: solid 1px #CFDBE5;
+  border-right: solid 1px #CFDBE5;
+  margin-top: 15px;
+  margin-bottom: 115px;
+}
+
+.blank_row {
+  background: white;
+  border-bottom: solid 1px #CFDBE5;
+  height: 25px;
+}
+
+/* =========================== Message Show page */
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #62676c;
+}
+
+#messages.no-hover .message-area {
+  width: 100%;
+}
+
+#messages.no-hover .message-heading {
+  display: flex;
+  justify-content: space-between;
+  height: 47px;
+  margin-top: 3px;
+}
+
+#messages.no-hover .message-heading .btn {
+  min-width: 105px;
+}
+
+#messages-form {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 1;
+}
+
+.single-message {
+  font-size: 27px;
+  line-height: 32px;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+}
+
+/* ================================ 404 page */
+
+.message-404 {
+  color: white;
+  margin-top: 2em;
+  text-align: center;
+}
+
+.message-404 a {
+  color: white;
+}
+
+.message-404>h4.display-4 {
+  font-size: 2.5em;
+}
+
+.message-404 .form-inline input {
+  flex: 1;
+}
