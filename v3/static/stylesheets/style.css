@@ -306,7 +306,6 @@ nav+.container {
 }
 
 .li {
-  font-size: 14px;
   margin-left: 10px;
   list-style-type: circle;
 }
@@ -380,7 +379,7 @@ nav+.container {
   width: 15%;
   text-align: left;
   position: fixed;
-  top: 37%;
+  top: 25%;
   left: 2.3%;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -578,7 +577,7 @@ img {
 
 table {
   width: 100%;
-  font-size: 16px;
+  font-size: 1em;
   justify-self: center;
 }
 
@@ -625,7 +624,7 @@ th {
 .episode_id {
   padding-left: .5rem;
   padding-right: .5rem;
-  width: 6em;
+  width: 10em;
   text-align: center;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -658,7 +657,7 @@ th {
 .airdate {
   padding-left: .5rem;
   padding-right: .5rem;
-  width: 10em;
+  width: 14em;
   text-align: center;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -681,7 +680,7 @@ th {
   width: 15%;
   text-align: center;
   position: fixed;
-  top: 63.43%;
+  top: 50%;
   right: 2.3%;
   color: white;
 }
