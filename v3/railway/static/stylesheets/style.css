@@ -306,7 +306,6 @@ nav+.container {
 }
 
 .li {
-  font-size: 14px;
   margin-left: 10px;
   list-style-type: circle;
 }
@@ -380,7 +379,7 @@ nav+.container {
   width: 15%;
   text-align: left;
   position: fixed;
-  top: 37%;
+  top: 30%;
   left: 2.3%;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -396,6 +395,7 @@ nav+.container {
   border-left: 1px solid;
   border-right: 1px solid;
   border-color: white;
+  font-size: .86rem;
 }
 
 
@@ -578,7 +578,7 @@ img {
 
 table {
   width: 100%;
-  font-size: 16px;
+  font-size: 1em;
   justify-self: center;
 }
 
@@ -625,7 +625,7 @@ th {
 .episode_id {
   padding-left: .5rem;
   padding-right: .5rem;
-  width: 6em;
+  width: 10em;
   text-align: center;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -643,11 +643,11 @@ th {
 }
 
 .title>input[type="checkbox"][value="TOS1-1"] {
-  scroll-margin-top: 400px;
+  scroll-margin-top: 35em;
 }
 
 .title>input[type="checkbox"] {
-  scroll-margin-top: 200px;
+  scroll-margin-top: 12.5em;
 }
 
 .title>input,
@@ -658,7 +658,7 @@ th {
 .airdate {
   padding-left: .5rem;
   padding-right: .5rem;
-  width: 10em;
+  width: 14em;
   text-align: center;
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -681,7 +681,7 @@ th {
   width: 15%;
   text-align: center;
   position: fixed;
-  top: 63.43%;
+  top: 50%;
   right: 2.3%;
   color: white;
 }
