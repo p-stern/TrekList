@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
 app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get('DATABASE_URL', 'postgresql:///startrek'))
+    os.environ.get('DATABASE_URL', 'postgresql:///postgres:wYUgjIdBcf9W9ZjvJY8F@containers-us-west-73.railway.app:7579/railway'))
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -23,7 +23,6 @@ connect_db(app)
 def populate_db():
 
     drop_media_constraint = 'ALTER TABLE "title" DROP CONSTRAINT "fk_title_media_id"'
-    # drop_title_constraint = 'ALTER TABLE "post" DROP CONSTRAINT "fk_post_title_id"'
 
     db.session.execute(drop_media_constraint)
     # db.session.execute(drop_title_constraint)
@@ -55,7 +54,6 @@ def populate_db():
     db.session.commit()
 
     add_media_constraint = 'ALTER TABLE "title" ADD CONSTRAINT "fk_title_media_id" FOREIGN KEY("media_id") REFERENCES "media" ("id")'
-    # add_title_constraint = 'ALTER TABLE "post" ADD CONSTRAINT "fk_post_title_id" FOREIGN KEY("title_id") REFERENCES "title" ("id");'
 
     db.session.execute(add_media_constraint)
     # db.session.execute(add_title_constraint)
@@ -289,6 +287,18 @@ def corrections(abbr, season, name, episode, airdate):
 
     if name == "Part Two: Disengage":
         name = "Disengage"
+
+    if name == "Part Three: Seventeen Seconds":
+        name = "Seventeen Seconds"
+
+    if name == "Part Four: No Win Scenario":
+        name = "No Win Scenario"
+
+    if name == "Part Five: Imposter":
+        name = "Imposter"
+
+    if name == "Part Six: Bounty":
+        name = "Bounty"
 
     # SNW
 

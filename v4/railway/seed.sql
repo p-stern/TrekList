@@ -1,11 +1,11 @@
 -- from the terminal run:
 -- psql < seed.sql
 
-DROP DATABASE IF EXISTS startrek;
+-- DROP DATABASE IF EXISTS startrek;
 
-CREATE DATABASE startrek;
+-- CREATE DATABASE startrek;
 
-\c startrek
+-- \c startrek
 
 CREATE TABLE media (
     id SERIAL   NOT NULL,
