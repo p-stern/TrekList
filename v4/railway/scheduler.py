@@ -60,6 +60,7 @@ def populate_db():
     db.session.commit()
 
     print("Loaded")
+    print("Cntl-Z to exit")
     return schedule.CancelJob
 
 
@@ -282,23 +283,23 @@ def corrections(abbr, season, name, episode, airdate):
 
     # PIC
 
-    if name == "Part One: The Next Generation":
+    if name == 'Part One "The Next Generation"':
         name = "The Next Generation"
 
-    if name == "Part Two: Disengage":
+    if name == 'Part Two "Disengage"':
         name = "Disengage"
 
-    if name == "Part Three: Seventeen Seconds":
+    if name == 'Part Three "Seventeen Seconds"':
         name = "Seventeen Seconds"
 
-    if name == "Part Four: No Win Scenario":
+    if name == 'Part Four "No Win Scenario"':
         name = "No Win Scenario"
 
-    if name == "Part Five: Imposter":
-        name = "Imposter"
+    if name == 'Part Five "Imposters"':
+        name = "Imposters"
 
-    if name == "Part Six: Bounty":
-        name = "Bounty"
+    if name == 'Part Six "The Bounty"':
+        name = "The Bounty"
 
     # SNW
 
