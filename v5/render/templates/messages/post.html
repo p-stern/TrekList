@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-messages">
+  <div class="container-row">
+    <br><br><br>
+    <h1>{{media.name}}</h1>
+    {% if title.abbr != "Movie" %}
+    <h2>Season {{title.season_id}} Episode {{title.episode_id}}</h2>
+    {% endif %}
+    <h2><a href="https://memory-alpha.fandom.com/wiki/{{title.title}}">{{title.title}}</a></h2>
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        {{title.summary | safe}}
+      </div>
+    </div>
+  </div>
+  <br>
+  {% if posts|length > 0 %}
+  <div class="row justify-content-center">
+    <h2>Comments</h2>
+
+    <div class="posts col-md-6">
+      <table class="tablea">
+        {% for post in posts %}
+        <tr>
+          <td class="header">{{post.User.username}}</td>
+          <td class="header">{{post.Post.created_at}}</td>
+          <td class="header" align="right"></td>
+        </tr>
+        <tr>
+          <td class="detaila" colspan="3" valign="top">{{post.Post.content}}
+          </td>
+        </tr>
+        <tr class="blank_row">
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+  {% endif %}
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form method="POST">
+        {{ form.csrf_token }}
+        <div>
+          {% if form.text.errors %}
+          {% for error in form.text.errors %}
+          <span class="text-danger">
+            {{ error }}
+          </span>
+          {% endfor %}
+          {% endif %}
+          {{ form.text(placeholder="Add comment", class="form-control", rows="3") }}
+        </div>
+        <button class="btn btn-success btn-block">Add my message!</button>
+      </form>
+      <br>
+      <a href="/">
+        <button class="btn btn-primary btn-block">Back to list</button>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
