@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
 app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get('DATABASE_URL', 'postgresql://nkwoctov:Q8MZnqH-lcUg9NhX3gVKnF9VcOoOzZFO@heffalump.db.elephantsql.com/nkwoctov'))
+    os.environ.get('DATABASE_URL', 'postgresql:///startrek'))
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -23,6 +23,7 @@ connect_db(app)
 def populate_db():
 
     drop_media_constraint = 'ALTER TABLE "title" DROP CONSTRAINT "fk_title_media_id"'
+    # drop_title_constraint = 'ALTER TABLE "post" DROP CONSTRAINT "fk_post_title_id"'
 
     db.session.execute(drop_media_constraint)
     # db.session.execute(drop_title_constraint)
@@ -43,6 +44,7 @@ def populate_db():
             res = requests.get(url)
             data = res.json()
             for d in data:
+                # print(d['season'], d['name'], d['number'], d['airdate']) 
                 season, name, episode, airdate = corrections(
                     m.abbr, d['season'], d['name'], d['number'], d['airdate'])
                 if name not in misnamed_episodes:
@@ -54,6 +56,7 @@ def populate_db():
     db.session.commit()
 
     add_media_constraint = 'ALTER TABLE "title" ADD CONSTRAINT "fk_title_media_id" FOREIGN KEY("media_id") REFERENCES "media" ("id")'
+    # add_title_constraint = 'ALTER TABLE "post" ADD CONSTRAINT "fk_post_title_id" FOREIGN KEY("title_id") REFERENCES "title" ("id");'
 
     db.session.execute(add_media_constraint)
     # db.session.execute(add_title_constraint)
@@ -85,6 +88,10 @@ def addSpecialEpisode(m):
 
 
 def corrections(abbr, season, name, episode, airdate):
+
+    if airdate == "":
+        airdate = '9999-12-31'
+
     """Tweak titles so that the a href points to an existing url"""
 
     # TOS
@@ -283,40 +290,44 @@ def corrections(abbr, season, name, episode, airdate):
 
     # PIC
 
-    if name == 'Part One "The Next Generation"':
+
+    if name == 'Part One: "The Next Generation"':
         name = "The Next Generation"
 
-    if name == 'Part Two "Disengage"':
+    if name == 'Part Two: "Disengage"':
         name = "Disengage"
 
-    if name == 'Part Three "Seventeen Seconds"':
+    if name == 'Part Three: "Seventeen Seconds"':
         name = "Seventeen Seconds"
 
-    if name == 'Part Four "No Win Scenario"':
+    if name == 'Part Four: "No Win Scenario"':
         name = "No Win Scenario"
 
-    if name == 'Part Five "Imposters"':
+    if name == 'Part Five: "Imposters"':
         name = "Imposters"
 
-    if name == 'Part Six "The Bounty"':
+    if name == 'Part Six: "The Bounty"':
         name = "The Bounty"
 
-    if name == 'Part Seven "Dominion"':
+    if name == 'Part Seven: "Dominion"':
         name = "Dominion"
 
-    if name == 'Part Eight "Surrender"':
+    if name == 'Part Eight: "Surrender"':
         name = "Surrender"
 
-    if name == 'Part Nine "Võx"':
+    if name == 'Part Nine: "Võx"':
         name = "Võx"
 
-    if name == 'Part Ten "The Last Generation"':
+    if name == 'Part Ten: "The Last Generation"':
         name = "The Last Generation"
 
     # SNW
 
     if name == "Ghost of Illyria":
         name = "Ghosts of Illyria"
+
+    if name == "Ad Astra Per Aspera":
+        name = "Ad Astra per Aspera"       
 
     # PRO
 
