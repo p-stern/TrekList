@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-content">
+  <div class="container-row col-12">
+    <br><br><br>
+    <h1>Star Trek List</h1>
+    <br><br><br>
+    <p>Use checkboxes to mark viewed seasons and episodes!</p>
+    <span>Click <i class="cmt-hdr fa-regular fa-comment"></i> to add comments</span> <br>
+    <span>Click <i class="cmt-hdr fa-solid fa-comment"></i> to view and add comments</span>
+    <br><br><br>
+  </div>
+  <div class="row">
+    <div class="container-left col-3">
+      <table class="legend">
+        <tbody>
+          {% for m in media %}
+          <tr>
+            <td class="{{m.abbr}}"></td>
+            <td class="td-legend">
+              {{m.name}} <br>
+              {% for n in range(m.seasons) %}
+              {% if m.abbr == "Movie" %}
+              {% for mov in movies %}
+              {% if mov.id == n+1 %}
+              <label for="{{m.abbr}}{{n+1}}"> {{n+1}}: </label>
+              <input type="checkbox" name="season" value="{{mov.id}}-{{mov.abbr}}{{mov.season_id}}-{{mov.episode_id}}"
+                onclick='window.location.assign("#{{mov.id}}-{{mov.abbr}}{{mov.season_id}}-{{mov.episode_id}}")'>
+              {% endif %}
+              {% endfor %}
+              {% else %}
+              {% if m.abbr == "TOS" and n == 3 %}
+              <label for="{{m.abbr}}0"> Pilot: </label>
+              <input type="checkbox" name="season" value="{{m.abbr}}0" onclick="jumpToSeason('{{m.abbr}}','{{n+1}}')">
+              {% else %}
+              <label for="{{m.abbr}}{{n+1}}"> {{n+1}}: </label>
+              <input type="checkbox" name="season" value="{{m.abbr}}{{n+1}}"
+                onclick="jumpToSeason('{{m.abbr}}','{{n+1}}')">
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="container-main col-7">
+      <div class="content-detail">
+        <div class="column-detail">
+          <table>
+            <tbody>
+              <tr>
+                <th class="series">Series </th>
+                <th class="episode_id">Episode</th>
+                <th class="th-title">Title</th>
+                <th class="airdate">Air date</th>
+              </tr>
+              {% for t in titles %}
+              <tr class="{{t.Title.abbr}}">
+
+                <td class="{{t.Title.abbr}}-logo"></td>
+
+                {% if t.Title.abbr == "Movie" %}
+                <td class="episode_id">Movie ({{t.Title.id}})</td>
+                {% if today >= t.Title.premiered_date %}
+                <td class="title"><label
+                    for="{{t.Title.id}}-{{t.Title.abbr}}{{t.Title.season_id}}-{{t.Title.episode_id}}"></label>
+                  <input type="checkbox"
+                    id="{{t.Title.id}}-{{t.Title.abbr}}{{t.Title.season_id}}-{{t.Title.episode_id}}" name="episode"
+                    value="{{t.Title.id}}-{{t.Title.abbr}}{{t.Title.season_id}}-{{t.Title.episode_id}}"><a
+                    href="https://memory-alpha.fandom.com/wiki/{{t.Title.title}}">{{t.Title.title}}</a>
+
+                  <a href="/messages/{{t.Title.id}}" class="icon-block" method="GET">
+                    {% if t.comment_count > 0 %}
+                    <i id="{{t.Title.id}}" class="fa-solid fa-comment"></i>
+                    {% else %}
+                    <i id="{{t.Title.id}}" class="fa-regular fa-comment"></i>
+                    {% endif %}
+                  </a>
+                </td>
+
+                {% else %}
+                <td class="title">{{t.Title.title}}</td>
+                {% endif %}
+                {% else %}
+                <td class="episode_id">{{t.Title.season_id}}-{{t.Title.episode_id}}</td>
+
+                {% if today >= t.Title.premiered_date %}
+                <td class="title"><label for="{{t.Title.abbr}}{{t.Title.season_id}}-{{t.Title.episode_id}}"></label>
+                  <input type="checkbox" id="{{t.Title.abbr}}{{t.Title.season_id}}-{{t.Title.episode_id}}"
+                    name="episode" value="{{t.Title.abbr}}{{t.Title.season_id}}-{{t.Title.episode_id}}"><a
+                    href="https://memory-alpha.fandom.com/wiki/{{ t.Title.title|replace('?', '%3F') }}_(episode)">{{t.Title.title}}</a>
+
+                  <a href="/messages/{{t.Title.abbr}}-{{t.Title.season_id}}-{{t.Title.episode_id}}" class="icon-block"
+                    method="GET">
+                    {% if t.comment_count > 0 %}
+                    <i id="{{t.Title.id}}" class="fa-solid fa-comment"></i>
+                    {% else %}
+                    <i id="{{t.Title.id}}" class="fa-regular fa-comment"></i>
+                    {% endif %}
+                  </a>
+                </td>
+
+                {% else %}
+                <td class="title">{{t.Title.title}}</td>
+                {% endif %}
+
+                {% endif %}
+
+                <td class="airdate">{{t.Title.premiered_date}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="container-right col-2">
+      <h3>Total Episodes Watched</h3>
+      <h2 id="watched"></h2>
+    </div>
+  </div>
+</div>
+{% endblock %}
