@@ -301,6 +301,18 @@ def corrections(abbr, season, name, episode, airdate):
     if name == 'Part Six "The Bounty"':
         name = "The Bounty"
 
+    if name == 'Part Seven "Dominion"':
+        name = "Dominion"
+
+    if name == 'Part Eight "Surrender"':
+        name = "Surrender"
+
+    if name == 'Part Nine "Võx"':
+        name = "Võx"
+
+    if name == 'Part Ten "The Last Generation"':
+        name = "The Last Generation"
+
     # SNW
 
     if name == "Ghost of Illyria":

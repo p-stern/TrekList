@@ -1,9 +1,9 @@
 # TrekList - a Guide to Star Trek television shows and films #
 ##
 
-## Deployed on Railway ##
+## Deployed on Render ##
 
-[https://treklist-production.up.railway.app/](https://treklist-production.up.railway.app/ "TrekList")
+[https://treklist.onrender.com](https://treklist.onrender.com "TrekList")
 ## Description ##
 
 TrekList lists Star Trek episodes and movies in the order they were released.  
@@ -63,7 +63,8 @@ The TrekList data comes from the TVMAZE API, [https://www.tvmaze.com/api](https:
 	premiered_date date
 	media_id int FK >- media.id
 	season_id int
-	episode_id int
+	episode_id text
+	episode_num_sort int
 	title text
 	summary text
 >	
@@ -77,9 +78,9 @@ The TrekList data comes from the TVMAZE API, [https://www.tvmaze.com/api](https:
 	-
 	id pk SERIAL
 	user_id  int FK >- user.id
-	media_id int FK >- title.media_id
+	abbr text FK >- title.abbr
 	season_id int FK >- title.season_id
-	episode_id int FK >- title.episode_id
+	episode_id text FK >- title.episode_id
 	title text
 	content text
 	created_at timestamp

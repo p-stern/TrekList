@@ -32,7 +32,7 @@ VALUES
 (7480, 'DIS', 'Star Trek: Discovery', 'TV', 4, 8),
 (39744, 'ST', 'Star Trek: Short Treks', 'TV', 2, 9),
 (42193, 'PIC', 'Star Trek: Picard', 'TV', 3, 10),
-(39323, 'LD', 'Star Trek: Lower Decks', 'TV', 3, 11),
+(39323, 'LD', 'Star Trek: Lower Decks', 'TV', 2, 11),
 (49333, 'PRO', 'Star Trek: Prodigy', 'TV', 1, 12),
 (48090, 'SNW', 'Star Trek: Strange New Worlds', 'TV', 1, 13);
 
@@ -69,7 +69,7 @@ VALUES
   (11, 'Movie', '2009-05-08', 1, 3, '1', 'Star Trek', ' '),
   (12, 'Movie', '2013-05-16', 1, 3, '2', 'Star Trek Into Darkness', ' '),
   (13, 'Movie', '2016-07-22', 1, 3, '3', 'Star Trek Beyond', ' ');
-
+  
 
 -- Get Max ID from title
 SELECT MAX(id) FROM title;

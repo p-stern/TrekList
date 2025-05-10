@@ -1,5 +1,4 @@
-
-import psycopg2
+import schedule
 import time
 import requests
 import os
@@ -10,13 +9,8 @@ app = Flask(__name__)
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
-
-# Due to heroku change in the sqlalchemy library
-db_url = os.environ.get('DATABASE_URL').replace(
-    "postgres://", "postgresql://", 1)
-
 app.config['SQLALCHEMY_DATABASE_URI'] = (
-    os.environ.get(db_url, 'postgresql:///startrek'))
+    os.environ.get('DATABASE_URL', 'postgresql:///startrek'))
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -27,7 +21,16 @@ connect_db(app)
 
 
 def populate_db():
+
+    drop_media_constraint = 'ALTER TABLE "title" DROP CONSTRAINT "fk_title_media_id"'
+    # drop_title_constraint = 'ALTER TABLE "post" DROP CONSTRAINT "fk_post_title_id"'
+
+    db.session.execute(drop_media_constraint)
+    # db.session.execute(drop_title_constraint)
+    db.session.commit()
+
     Title.query.filter(Title.media_id != 1).delete()
+    db.session.execute("SELECT setval('title_id_seq', 13, true)")
     db.session.commit()
     print("Title table deleted")
 
@@ -35,12 +38,17 @@ def populate_db():
                          "What You Leave Behind, Part II", "Flesh and Blood, Part II", "Endgame, Part II", "Broken Bow (2)"]
 
     media = Media.query.order_by(Media.ord).all()
+    print(">>>>>>>>>>>>>1");
     for m in media:                  # Retrieve episodes for each TV Series and insert into 'title' table
+        print(">>>>>>>>>>>>>2");
         if m.media_type == 'TV':     # Do not include Movies
+            print(">>>>>>>>>>>>>32");
             url = "http://api.tvmaze.com/shows/" + str(m.id) + "/episodes"
             res = requests.get(url)
             data = res.json()
+            print(">>>>>>>>>>>>>ABOUT TO LOOP");
             for d in data:
+                # print(d['season'], d['name'], d['number'], d['airdate']) 
                 season, name, episode, airdate = corrections(
                     m.abbr, d['season'], d['name'], d['number'], d['airdate'])
                 if name not in misnamed_episodes:
@@ -50,13 +58,24 @@ def populate_db():
     addSpecialEpisode(m)
 
     db.session.commit()
+
+    add_media_constraint = 'ALTER TABLE "title" ADD CONSTRAINT "fk_title_media_id" FOREIGN KEY("media_id") REFERENCES "media" ("id")'
+    # add_title_constraint = 'ALTER TABLE "post" ADD CONSTRAINT "fk_post_title_id" FOREIGN KEY("title_id") REFERENCES "title" ("id");'
+
+    db.session.execute(add_media_constraint)
+    # db.session.execute(add_title_constraint)
+    db.session.commit()
+
     print("Loaded")
+    print("Cntl-Z to exit")
     return schedule.CancelJob
 
 
 def add_title(abbr, airdate, id, season, episode, name, summary):
     title = Title(abbr=abbr, premiered_date=airdate, media_id=id,
                   season_id=season, episode_id=episode, title=name, summary=summary)
+    print(f"About to add: {title}")
+
     db.session.add(title)
 
 
@@ -68,13 +87,17 @@ def addSpecialEpisode(m):
     res = requests.get(url)
     data = res.json()
     for d in data:
-        if d['number'] == None:
+        if d['number'] == None:    
             season, name, episode, airdate = corrections(
                 m.abbr, d['season'], d['name'], d['number'], d['airdate'])
             add_title('TOS', airdate, 490, season, episode, name, d['summary'])
 
 
 def corrections(abbr, season, name, episode, airdate):
+
+    if airdate == "":
+        airdate = '9999-12-31'
+
     """Tweak titles so that the a href points to an existing url"""
 
     # TOS
@@ -90,8 +113,7 @@ def corrections(abbr, season, name, episode, airdate):
     if name == "Operation: Annihilate!":
         name = "Operation -- Annihilate!"
 
-    if name == "The Cage (Pilot)":
-        name = "The Cage"
+    if name == "The Cage (The Pilot)":
         season = 0
         episode = 0
         airdate = '1988-10-04'
@@ -212,6 +234,24 @@ def corrections(abbr, season, name, episode, airdate):
     if name == "Storm Front (2)":
         name = "Storm Front, Part II"
 
+    if name == "Borderland (1)":
+        name = "Borderland"
+
+    if name == "Cold Station 12 (2)":
+        name = "Cold Station 12"
+
+    if name == "The Augments (3)":
+        name = "The Augments"
+
+    if name == "The Forge (1)":
+        name = "The Forge"
+
+    if name == "Awakening (2)":
+        name = "Awakening"
+
+    if name == "Kir'Shara (3)":
+        name = "Kir'Shara"
+
     if name == "Babel One (1)":
         name = "Babel One"
 
@@ -253,10 +293,46 @@ def corrections(abbr, season, name, episode, airdate):
     if name == "…But to Connect":
         name = "...But to Connect"
 
+    # PIC
+
+
+    if name == 'Part One: "The Next Generation"':
+        name = "The Next Generation"
+
+    if name == 'Part Two: "Disengage"':
+        name = "Disengage"
+
+    if name == 'Part Three: "Seventeen Seconds"':
+        name = "Seventeen Seconds"
+
+    if name == 'Part Four: "No Win Scenario"':
+        name = "No Win Scenario"
+
+    if name == 'Part Five: "Imposters"':
+        name = "Imposters"
+
+    if name == 'Part Six: "The Bounty"':
+        name = "The Bounty"
+
+    if name == 'Part Seven: "Dominion"':
+        name = "Dominion"
+
+    if name == 'Part Eight: "Surrender"':
+        name = "Surrender"
+
+    if name == 'Part Nine: "Võx"':
+        name = "Võx"
+
+    if name == 'Part Ten: "The Last Generation"':
+        name = "The Last Generation"
+
     # SNW
 
     if name == "Ghost of Illyria":
         name = "Ghosts of Illyria"
+
+    if name == "Ad Astra Per Aspera":
+        name = "Ad Astra per Aspera"       
 
     # PRO
 
@@ -269,4 +345,8 @@ def corrections(abbr, season, name, episode, airdate):
     return season, name, episode, airdate
 
 
-populate_db()
+schedule.every(10).seconds.do(populate_db)
+
+while 1:
+    schedule.run_pending()
+    time.sleep(1)
