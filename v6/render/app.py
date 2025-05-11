@@ -239,6 +239,15 @@ def episodes():
 
 
 ##############################################################################
+# Health check route
+
+@app.route("/health")
+def health_check():
+    """Health check endpoint for uptime monitoring."""
+    return "OK", 200
+
+
+##############################################################################
 # Turn off all caching in Flask
 #   (useful for dev; in production, this kind of stuff is typically
 #   handled elsewhere)
