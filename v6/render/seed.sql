@@ -34,7 +34,7 @@ VALUES
 (42193, 'PIC', 'Star Trek: Picard', 'TV', 3, 10),
 (39323, 'LD', 'Star Trek: Lower Decks', 'TV', 5, 11),
 (49333, 'PRO', 'Star Trek: Prodigy', 'TV', 2, 12),
-(48090, 'SNW', 'Star Trek: Strange New Worlds', 'TV', 2, 13);
+(48090, 'SNW', 'Star Trek: Strange New Worlds', 'TV', 3, 13);
 
 CREATE INDEX idx_media_ord ON media (ord);
 
